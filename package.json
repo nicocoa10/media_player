@@ -1,0 +1,16 @@
+{
+  "name": "media_player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d media_player"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://nicocoa10.github.io/media_player",
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
