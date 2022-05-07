@@ -15,6 +15,7 @@ const progressContainer = document.querySelector('.progress-container')
 const musicInfo = document.querySelector('#title')
 
 const cover = document.querySelector('#cover')
+const root = document.documentElement;
 
 // song titles 
 
@@ -71,14 +72,19 @@ function nextSong(){
 
     audio.play()
 
+
 }
 
 
 function playSong(){
-    musicContainer.className = 'music-container play'
+    musicContainer.className = 'music-container play blink'
     playButton.innerHTML = '<i class="fas fa-pause"></i>'
 
     audio.play()
+
+
+    
+
 
 }
 
@@ -104,6 +110,31 @@ function updateProgress(e){
 
 }
 
+function updateColors(e){
+
+
+    const {duration, currentTime} = e.srcElement
+
+    console.log(duration)
+    console.log(parseInt(currentTime))
+    const remainder = currentTime - parseInt(currentTime)
+    // const progressPercent = (currentTime / duration) * 100
+    if( parseInt(currentTime) %2 ==0){
+        root.style.setProperty('--rgba-background', "rgba(149, 172, 255, 0.92)")
+} 
+    else if (parseInt(currentTime) %3 ==0){  
+        root.style.setProperty('--rgba-background', "rgba(203, 214, 255, 0.92)")
+
+    }
+    else {
+        root.style.setProperty('--rgba-background', "rgba(230, 200, 255, 0.92)")
+
+    }
+    
+
+  
+}
+
 // when play button is clicked
 playButton.addEventListener('click',playAction);
 
@@ -121,6 +152,8 @@ function playAction (e){
     else{
         playSong()
 
+   
+
     }
 
 }
@@ -132,5 +165,11 @@ nextButton.addEventListener('click', nextSong)
 
 
 audio.addEventListener('timeupdate',updateProgress)
+
+
+
+//change colors to beat
+audio.addEventListener('timeupdate',updateColors)
+
 
 progressContainer.addEventListener('click',jumpAudio)
